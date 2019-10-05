@@ -11,8 +11,9 @@ module.exports = function (app) {
         })
     })
     app.get("/api/scrape/", async function (req, res) {
-        const url = "https://www.cnn.com/";
+        const url = "https://old.reddit.com/";
         const data = await scrape(url);
-        res.send(data.body);
+        console.log(data);
+        res.json(data);
     })
 }

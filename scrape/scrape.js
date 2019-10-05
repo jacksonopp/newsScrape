@@ -1,21 +1,24 @@
 const cheerio = require("cheerio");
-const request = require("superagent");
+const axios = require("axios");
 
 module.exports = async function (url) {
-    const data = await request.get(url)
-    const $ = cheerio.load(data.body);
+    const response = await axios.get(url)
+    var $ = cheerio.load(response.data);
+    var results = [];
 
-    const results = [];
-
-    $("div.cd__content").each((i, element) => {
-        const headline = $(element).children(".cd__headline-text").text;
-        const link = $(element).children("a").attr("href");
+    $("div.thing").each(function (i, element) {
+        const title = $(element).find("a.title").text();
+        const url = $(element).find("a.title").attr('href');
+        const sub = $(element).find("a.subreddit").text();
+        const time = $(element).find("time").attr("datetime");
 
         results.push({
-            headline,
-            link,
+            title,
+            url,
+            sub,
+            time
         })
-
     })
+    // console.log(results);
     return results;
 }
