@@ -2,6 +2,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./config/mongoose");
+const bodyParser = require("body-parser");
 //setting up express
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +19,10 @@ db.on("error", function (err) {
     console.log(err);
 })
 
+//statuc
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");

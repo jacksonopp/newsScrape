@@ -16,6 +16,10 @@ module.exports = function (app) {
         console.log(data);
         res.json(data);
     })
+    app.post("/api/scrape/add", function (req, res) {
+        console.log(req.body);
+        res.send("connected");
+    })
     app.get("/api/scrape/add", async function (req, res) {
         console.log("client connected");
         const url = "https://old.reddit.com/r/news";

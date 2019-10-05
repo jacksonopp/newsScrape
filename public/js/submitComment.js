@@ -5,7 +5,5 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
         author: document.getElementById("author").value
     }
     console.log({ body });
-    axios.put("/api/scrape/add", body).then(response => {
-        console.log(response);
-    })
+    axios.post("/api/scrape/add", body)
 })
