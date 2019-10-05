@@ -6,9 +6,6 @@ const CommentSchema = new mongoose.Schema({
     },
     author: {
         type: String
-    },
-    date: {
-        type: Date
     }
 })
 
