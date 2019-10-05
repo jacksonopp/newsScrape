@@ -1,6 +1,7 @@
 {{#each article}}
-    <h1>{{headline}}</h1>
-    <p>{{summary}}</p>
-    <a href="{{_id}}">View Article</a>
+    <h1>{{title}}</h1>
+    <p>{{sub}}</p>
+    <p>{{time}}</p>
+    <a href="/article/{{_id}}">View Article</a>
 {{/each}}
 <script src="/js/scrapeAdd.js"></script>

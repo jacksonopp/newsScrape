@@ -11,16 +11,16 @@ module.exports = function (app) {
         })
     })
     app.get("/api/scrape/", async function (req, res) {
-        const url = "https://old.reddit.com/";
+        const url = "https://old.reddit.com/r/news";
         const data = await scrape(url);
         console.log(data);
         res.json(data);
     })
     app.get("/api/scrape/add", async function (req, res) {
-        console.log("client connected")
-        const url = "https://old.reddit.com/";
+        console.log("client connected");
+        const url = "https://old.reddit.com/r/news";
         const data = await scrape(url);
-        console.log(data);
+        console.log("updating");
         data.forEach(post => {
             Article.findOneAndUpdate({
                 title: post.title
