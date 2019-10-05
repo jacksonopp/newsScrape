@@ -4,16 +4,20 @@ const CommentSchema = require("./comment");
 //article schema
 
 const articleSchema = mongoose.Schema({
-    headline: {
+    title: {
         type: String,
         required: true,
     },
-    summary: {
+    sub: {
         type: String,
         required: true
     },
     url: {
         type: String,
+        required: true
+    },
+    time: {
+        type: Date,
         required: true
     },
     comments: [CommentSchema]
