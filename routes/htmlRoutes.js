@@ -1,5 +1,10 @@
+// import models
+const Article = require("../models/article");
+
 module.exports = function (app) {
     app.get("/", function (req, res) {
-        res.render("index");
+        Article.find({}, (err, data) => {
+            res.json(data);
+        })
     })
 }

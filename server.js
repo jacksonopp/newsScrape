@@ -1,9 +1,22 @@
 //imports
 const express = require("express");
 const exphbs = require("express-handlebars");
+const db = require("./config/mongoose");
 //setting up express
 const app = express();
 const PORT = process.env.PORT || 3000;
+// ===================================== MONGO SETUP ===============================
+//import models
+const Article = require("./models/article");
+//check connection
+db.once("open", function () {
+    console.log("connected to mongodb");
+})
+
+//check for db errors
+db.on("error", function (err) {
+    console.log(err);
+})
 
 app.use(express.static("public"));
 //handlebars
