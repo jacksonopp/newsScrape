@@ -5,7 +5,10 @@ module.exports = function (app) {
     app.get("/", function (req, res) {
         Article.find({}, (err, data) => {
             console.log(data);
-            res.send(data);
+            res.render("index", { article: data });
         })
+    })
+    app.get("/:id", function (req, res) {
+
     })
 }
