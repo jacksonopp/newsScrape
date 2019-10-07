@@ -20,6 +20,9 @@ const articleSchema = mongoose.Schema({
         type: Date,
         required: true
     },
+    upvotes: {
+        type: Number
+    },
     comments: [CommentSchema]
 })
 

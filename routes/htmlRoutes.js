@@ -5,9 +5,9 @@ const scrape = require("../scrape/scrape");
 
 module.exports = function (app) {
     app.get("/", function (req, res) {
-        Article.find({}).sort({ time: -1 }).limit(5).exec((err, data) => {
+        Article.find({}).sort({ upvotes: - 1 }).limit(10).exec((err, data) => {
             if (err) throw err;
-            console.log(data);
+            // console.log(data);
             res.render("index", { article: data });
         })
     })
@@ -15,7 +15,7 @@ module.exports = function (app) {
         const id = req.params.id;
         Article.findById(id, (err, data) => {
             if (err) throw err;
-            console.log(data);
+            // console.log(data);
             res.render("article", data);
         })
     })
