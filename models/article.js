@@ -23,7 +23,10 @@ const articleSchema = mongoose.Schema({
     upvotes: {
         type: Number
     },
-    comments: [CommentSchema]
+    comments: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment"
+    }
 })
 
 const Article = module.exports = mongoose.model("Article", articleSchema);

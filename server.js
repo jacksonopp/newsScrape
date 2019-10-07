@@ -3,12 +3,11 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./config/mongoose");
 const bodyParser = require("body-parser");
+const logger = require("morgan")
 //setting up express
 const app = express();
 const PORT = process.env.PORT || 3000;
 // ===================================== MONGO SETUP ===============================
-//import models
-const Article = require("./models/article");
 //check connection
 db.once("open", function () {
     console.log("connected to mongodb");
@@ -19,13 +18,15 @@ db.on("error", function (err) {
     console.log(err);
 })
 
-//statuc
+//static
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+//morgan
+app.use(logger("dev"));
 
 //routes
 require("./routes/apiRoutes")(app);

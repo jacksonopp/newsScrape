@@ -1,11 +1,11 @@
 // importing models
-const Article = require("../models/article");
+const db = require("../models/");
 //importing scraper
 const scrape = require("../scrape/scrape");
 
 module.exports = function (app) {
     app.get("/api/articles", function (req, res) {
-        Article.find({}, (err, data) => {
+        db.Article.find({}, (err, data) => {
             res.json(data);
         })
     })
@@ -14,20 +14,24 @@ module.exports = function (app) {
         const data = await scrape(url);
         res.json(data);
     })
-    app.put("/api/scrape/add", function (req, res) {
-        console.log(req.body.comment); // should see stuff
-        Article.findOneAndUpdate({
-            _id: req.body.id
-        }, {
-            $push: { comments: req.body.comment }
-        })
-        res.send("connected");
+    app.post("/api/comment/", function (req, res) {
+        console.log(req.body);
+        db.Comment.create(req.body)
+            .then(function (dbComment) {
+                return db.Article.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: dbComment._id } }, { new: true });
+            })
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.send(err);
+            })
     })
     app.get("/api/scrape/add", async function (req, res) {
         const url = "https://old.reddit.com/r/news";
         const data = await scrape(url);
         data.forEach(post => {
-            Article.findOneAndUpdate({
+            db.Article.findOneAndUpdate({
                 title: post.title
             }, {
                 title: post.title,
