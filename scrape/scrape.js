@@ -11,12 +11,14 @@ module.exports = async function (url) {
         const url = $(element).find("a.title").attr('href');
         const sub = $(element).find("a.subreddit").text();
         const time = $(element).find("time").attr("datetime");
+        const upvotes = $(element).find("div.score.unvoted").attr("title");
 
         results.push({
             title,
             url,
             sub,
-            time
+            time,
+            upvotes
         })
     })
     // console.log(results);
