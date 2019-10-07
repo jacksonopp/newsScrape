@@ -14,14 +14,12 @@ module.exports = function (app) {
     app.get("/article/:id", function (req, res) {
         const id = req.params.id;
         db.Article.findById(id)
-            .populate("comment")
-            .then((data) => {
-                res.json(data);
+            .populate("comments")
+            .exec((err, data) => {
+                if (err) throw err;
+                // res.json(data);
                 console.log(data);
-                // res.render("article", data);
-            })
-            .catch((err) => {
-                res.send(err);
+                res.render("article", data);
             })
     })
     // app.get("/reddit", async function (req, res) {

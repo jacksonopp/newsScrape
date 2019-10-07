@@ -1,5 +1,5 @@
 document.getElementById("submit-btn").addEventListener("click", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const body = {
         body: document.getElementById("comment-area").value,
@@ -8,4 +8,5 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
     }
     // console.log({ body });
     axios.post("/api/comment", body)
+    location.reload();
 })
