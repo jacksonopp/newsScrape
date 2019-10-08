@@ -2,10 +2,11 @@
 {{#each article}}
 
     <div class="row mt-3">
-        <div class="col-8">
-            <h1>{{title}}</h1>
+        <div class="col-md-8">
+            <h2>{{title}}</h2>
+            <p>Posted by: u/{{user}}</p>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
             <p>Upvotes: {{upvotes}}</p>
             <p>{{time}}</p>
             <a href="/article/{{_id}}">View Article</a>

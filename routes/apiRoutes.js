@@ -32,13 +32,15 @@ module.exports = function (app) {
         const data = await scrape(url);
         data.forEach(post => {
             db.Article.findOneAndUpdate({
-                title: post.title
+                title: post.title,
+                upvotes: post.upvotes
             }, {
                 title: post.title,
                 url: post.url,
                 sub: post.sub,
                 time: post.time,
-                upvotes: post.upvotes
+                upvotes: post.upvotes,
+                user: post.user
             }, {
                 new: true, upsert: true
             }, (err) => {

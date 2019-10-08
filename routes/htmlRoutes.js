@@ -5,7 +5,7 @@ const scrape = require("../scrape/scrape");
 
 module.exports = function (app) {
     app.get("/", function (req, res) {
-        db.Article.find({}).sort({ upvotes: - 1 }).limit(10).exec((err, data) => {
+        db.Article.find({}).sort({ date: - 1 }).limit(20).exec((err, data) => {
             if (err) throw err;
             // console.log(data);
             res.render("index", { article: data });
