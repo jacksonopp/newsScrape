@@ -1,1 +1,1 @@
-axios.get("/api/scrape/add");
+axios.get("/api/scrape/add").then(response => console.log(response));
