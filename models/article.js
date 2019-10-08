@@ -22,6 +22,9 @@ const articleSchema = mongoose.Schema({
   upvotes: {
     type: Number
   },
+  user: {
+    type: String,
+  },
   comments: [
     {
       type: Schema.Types.ObjectId,
