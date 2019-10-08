@@ -42,11 +42,11 @@ module.exports = function (app) {
                 upvotes: post.upvotes,
                 user: post.user
             }, {
-                new: true, upsert: true
+                new: true,
+                upsert: true
             }, (err) => {
                 if (err) throw err;
             })
         })
-        res.send("update complete");
     })
 }
