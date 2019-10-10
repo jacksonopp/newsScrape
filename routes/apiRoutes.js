@@ -33,7 +33,6 @@ module.exports = function (app) {
         data.forEach(post => {
             db.Article.findOneAndUpdate({
                 title: post.title,
-                upvotes: post.upvotes
             }, {
                 title: post.title,
                 url: post.url,
